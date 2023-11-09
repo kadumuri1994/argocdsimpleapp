@@ -20,6 +20,7 @@ spec:
         - |
           echo "Environment Variables:"
           echo "MY_MYSQL_DB: $MY_MYSQL_DB"
+          echo "ENABLE_EXECUTION: $ENABLE_EXECUTION"
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -29,3 +30,8 @@ spec:
             configMapKeyRef:
               name: the-map
               key: mysqlDB
+        - name: ENABLE_EXECUTION
+          valueFrom:
+            configMapKeyRef:
+              name: the-map
+              key: enableExecution
