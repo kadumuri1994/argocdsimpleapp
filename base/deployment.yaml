@@ -1,20 +1,25 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-deployment
+ name: the-deployment
+ labels:
+   deployment: demo
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: trivial-go-web-app
   template:
     metadata:
       labels:
-        app: trivial-go-web-app
+        deployment: demo
     spec:
       containers:
-      - name: webserver-simple
-        image: docker.io/kostiscodefresh/gitops-simple-app:v1.0
+      - name: the-container
+        image: docker.io/kostiscodefresh/gitops-kustomize-app:v1.0
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
+        env:
+        - name: MY_MYSQL_DB
+          valueFrom:
+            configMapKeyRef:
+              name: the-map
+              key: mysqlDB
