@@ -4,5 +4,5 @@ metadata:
   name: the-map
 data:
   mysqlDB: "mysql.example.com:3306"
-  enable_execution: True
+  enableExecution: "True"
  
